@@ -226,7 +226,7 @@ Config.Heroes = {
 		hp = 1100, atk = 24, interval = 1.0, crit = 15, critMult = 150, evade = 14, manaRegen = 10,
 		passive = {
 			name = "Теневой клон",
-			desc = "В начале боя создаёт теневого клона-стража ({hp} HP). Клон забирает {share}% урона по герою и атакует врага.",
+			desc = "В начале боя создаёт теневого клона-стража ({cloneHp} HP). Клон забирает {cloneShare}% урона по герою и атакует врага.",
 			cloneHp = 260, cloneShare = 35, cloneAtk = 18,
 		},
 		ult = {

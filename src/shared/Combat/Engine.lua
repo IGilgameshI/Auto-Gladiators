@@ -1204,7 +1204,7 @@ function Sim:snapshot()
 	local function pack(u)
 		return {
 			math.floor(math.max(0, u.hp)),
-			u.maxHpValue,
+			math.floor(u.maxHpValue),
 			math.floor(u.mana),
 			u.stk.poison + u.perm.poison,
 			u.stk.ice + u.perm.ice,
@@ -1305,8 +1305,8 @@ function Engine.simulate(specA, specB, seed, opts)
 		log = sim.events,
 		snaps = sim.snaps,
 		final = {
-			{ hp = math.max(0, math.floor(sim.u1.hp)), maxHp = sim.u1.maxHpValue, dealt = math.floor(sim.u1.dealt), ults = sim.u1.ultCount },
-			{ hp = math.max(0, math.floor(sim.u2.hp)), maxHp = sim.u2.maxHpValue, dealt = math.floor(sim.u2.dealt), ults = sim.u2.ultCount },
+			{ hp = math.max(0, math.floor(sim.u1.hp)), maxHp = math.floor(sim.u1.maxHpValue), dealt = math.floor(sim.u1.dealt), ults = sim.u1.ultCount },
+			{ hp = math.max(0, math.floor(sim.u2.hp)), maxHp = math.floor(sim.u2.maxHpValue), dealt = math.floor(sim.u2.dealt), ults = sim.u2.ultCount },
 		},
 		names = { sim.u1.name, sim.u2.name },
 	}

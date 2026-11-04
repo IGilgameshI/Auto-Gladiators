@@ -95,3 +95,19 @@ T.test("предметы, артефакты, черты, территории, 
 		T.ok(n >= Config.Match.ArtifactChoices, "мало артефактов хода " .. turn)
 	end
 end)
+
+T.test("описания карт форматируются без незаполненных {v}", function()
+	local Text = R("shared/Text")
+	for _, c in ipairs(Config.Cards) do
+		for star = 1, 5 do
+			local s = Text.cardDesc(c, star)
+			T.ok(not s:find("{v"), "карта " .. c.id .. ": " .. s)
+		end
+	end
+	T.eq(Text.cardDesc(Config.Cards[1], 5), "С шансом 60% восстанавливает 60 HP при каждой атаке.")
+	for _, id in ipairs(Config.HeroOrder) do
+		local h = Config.Heroes[id]
+		T.ok(not Text.heroText(h.passive):find("{"), id .. " пассив")
+		T.ok(not Text.heroText(h.ult):find("{"), id .. " ульт")
+	end
+end)

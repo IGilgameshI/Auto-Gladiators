@@ -1,0 +1,7 @@
+# Rojo / Roblox
+*.rbxl.lock
+*.rbxlx.lock
+sourcemap.json
+# Python / тесты
+__pycache__/
+.venv/

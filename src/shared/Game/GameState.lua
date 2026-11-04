@@ -907,7 +907,7 @@ function GameState:privateState(pid)
 		styles[s] = {
 			xp = p.styleXp[s] or 0,
 			level = lvl,
-			next = Progression.levelReq(p, s, lvl + 1),
+			next = lvl < Config.Styles.MaxLevel and Progression.levelReq(p, s, lvl + 1) or 0,
 		}
 	end
 	local cards = {}
@@ -935,6 +935,11 @@ function GameState:privateState(pid)
 	for _, a in ipairs(p.artifacts) do
 		table.insert(arts, a.id)
 	end
+	-- Ключи-строки: RemoteEvent теряет таблицы с разреженными числовыми ключами
+	local talents = {}
+	for lvl, id in pairs(p.talentTaken) do
+		talents[tostring(lvl)] = id
+	end
 	return {
 		id = tostring(p.id),
 		gold = p.gold,
@@ -954,7 +959,7 @@ function GameState:privateState(pid)
 		artifactOffer = p.artifactOffer,
 		itemOffer = p.itemOffer,
 		talentOffer = p.talentOffer,
-		talents = p.talentTaken,
+		talents = talents,
 		winStreak = p.winStreak,
 		loseStreak = p.loseStreak,
 		lastIncome = p.lastIncome,

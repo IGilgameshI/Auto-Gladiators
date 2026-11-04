@@ -23,6 +23,15 @@ def _exit(code=0):
 
 g.os.exit = _exit
 
+# Список исходников для проверки синтаксиса
+sources = []
+for dirpath, _, files in os.walk(os.path.join(root, "src")):
+    for name in sorted(files):
+        if name.endswith(".lua"):
+            sources.append(os.path.join(dirpath, name))
+sources.sort()
+g.SOURCE_FILES = lua.table_from(sources)
+
 with open(os.path.join(root, "tests", "run.lua"), encoding="utf-8") as f:
     src = f.read()
 lua.execute(src)

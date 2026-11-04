@@ -27,6 +27,7 @@ Config.Match = {
 	LobbyWaitSeconds = 20, -- ожидание игроков в лобби
 	TerritoryVoteSeconds = 15,
 	TerritoryChoices = 6, -- сколько территорий выносится на голосование
+	TerritoryVoteRadius = 14, -- встать ближе к маркеру Territory_i = голос за неё
 	HeroPickSeconds = 15,
 	HeroChoices = 3, -- выбор гладиатора из N случайных
 	TraitPickSeconds = 15,

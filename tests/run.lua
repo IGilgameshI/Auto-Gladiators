@@ -175,6 +175,38 @@ function T.near(a, b, eps, msg)
 	end
 end
 
+-- Проверка синтаксиса всех файлов src (включая серверные и клиентские,
+-- которые вне Roblox не исполняются). Список файлов передаёт обвязка
+-- (SOURCE_FILES) или берётся через `find`, если доступен io.popen.
+local function listSources()
+	if SOURCE_FILES then
+		return SOURCE_FILES
+	end
+	local out = {}
+	if io and io.popen then
+		local h = io.popen('find "' .. SRC .. '" -name "*.lua"')
+		if h then
+			for line in h:lines() do
+				table.insert(out, line)
+			end
+			h:close()
+		end
+	end
+	return out
+end
+
+T.suite("Синтаксис исходников")
+local files = listSources()
+T.test("найдены исходники", function()
+	T.ok(#files >= 20, "файлов: " .. #files)
+end)
+for _, file in ipairs(files) do
+	T.test("компилируется " .. file:gsub("^.*/src/", "src/"), function()
+		local chunk, err = load(readFile(file), "@" .. file, "t", {})
+		T.ok(chunk ~= nil, tostring(err))
+	end)
+end
+
 local specs = {
 	"tests/rng.spec.lua",
 	"tests/data.spec.lua",

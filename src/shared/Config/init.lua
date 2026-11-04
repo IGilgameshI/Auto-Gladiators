@@ -36,7 +36,7 @@ Config.Match = {
 	PickSeconds = 15, -- выбор артефакта/предмета/таланта
 	ResultSeconds = 4, -- пауза после боя
 	MaxBattlePlaybackSeconds = 75, -- дольше бой на клиентах не показывается
-	BattleSpeed = 1.5, -- во сколько раз ускорено воспроизведение боя
+	BattleSpeed = 1.0, -- во сколько раз ускорено воспроизведение боя
 	CreepTurns = { [5] = 1, [10] = 2, [15] = 3 }, -- ход -> уровень снаряжения
 	ArtifactTurns = { [3] = true, [8] = true, [13] = true },
 	ArtifactChoices = 3,
@@ -93,7 +93,7 @@ Config.Styles = {
 	-- Суммарный опыт, нужный для уровней 1..4.
 	LevelXp = { 3, 8, 16, 28 },
 	MaxLevel = 4,
-	HpPerStyleXp = 12, -- HP за каждую единицу опыта стиля
+	HpPerStyleXp = 80, -- HP за каждую единицу опыта стиля
 	-- Порядок стилей (используется UI и генераторами).
 	Order = {
 		"attack", "evade", "crit", "health", "regen", "ulti",
@@ -114,7 +114,7 @@ Config.Combat = {
 	StackDecay = 0.30, -- стаки тают на 30%
 	DecayInterval = 1.0, -- Заморозка/Ярость тают раз в секунду
 	PoisonInterval = 1.0, -- базовый интервал тика яда
-	PoisonIntervalMin = 0.2,
+	PoisonIntervalMin = 0.4,
 	CritMultBase = 150, -- базовый множитель крита, %
 	EvadeReduceBase = 60, -- уклонение снижает физический урон на 60%
 	EvadeReduceMax = 100,
@@ -169,9 +169,8 @@ Config.CreepBase = {
 	UltDamagePerTier = 40,
 	StyleLevelByTier = { 2, 3, 4 }, -- уровень стиля крипа
 	HeroLevelByTier = { 6, 9, 12 },
-	HpMulByTier = { 1, 1, 1 }, -- множители для тонкой настройки
-	AtkMulByTier = { 1, 1, 1 },
-	CenturionBonusHp = 500, -- вождь кентавров (учтено в его HP)
+	HpMulByTier = { 1.4, 2.4, 4 }, -- крипы растут вместе с героями
+	AtkMulByTier = { 1.3, 2, 3 },
 }
 
 ---------------------------------------------------------------------------
